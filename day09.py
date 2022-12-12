@@ -13,6 +13,8 @@ def translate_tail(head_x, head_y, tail_x, tail_y):
     dif_x = head_x - tail_x
     dif_y = head_y - tail_y
     result_x, result_y = tail_x, tail_y
+    if abs(dif_x) == 2 and abs(dif_y) == 2:
+        return (tail_x + dif_x / 2), (tail_y + dif_y / 2)
     if abs(dif_x) == 2:
         result_x = tail_x + dif_x / 2
         if dif_y != 0:
@@ -44,6 +46,7 @@ def get_tail_visited_count(commands, rope_length):
             tails[i] = translate_tail(follow_x, follow_y, tail_x, tail_y)
             if i == rope_length - 2:
                 tail_visited.add(tails[i])
+    print_visited(tail_visited)
     return len(tail_visited)
 
 
@@ -54,6 +57,18 @@ def parse_input(lines):
         for _ in range(int(args[1])):
             commands.append(args[0])
     return commands
+
+
+def print_visited(tail_visited):
+    pass
+    # for y in range(-15, 15):
+    #     line = ""
+    #     for x in range(-15, 15):
+    #         if (x, y) in tail_visited:
+    #             line += '#'
+    #         else:
+    #             line += '.'
+    #     print(line)
 
 
 input_file = open('input/day09.txt', 'r')
